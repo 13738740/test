@@ -33,7 +33,7 @@
     align-items: center; /* vertically center logo / search / buttons */
     padding: 20px 40px;
     max-width: 100%;
-    justify-content: flex-start; /* keep items together; we'll push the user-actions to the right with margin-left:auto */
+    justify-content: flex-start; /* keep items together; user-actions will be pushed to the right */
     gap: 12px;
 }
 .header .mid_header .logo{
@@ -45,21 +45,21 @@
 {
     cursor: pointer;
     object-fit: contain; /* preserve aspect ratio */
-    height: 70px;       /* primary logo height - tweak this to scale */
+    height: 100px;       /* primary logo height - tweak this to scale */
     width: auto;        /* keep natural width to preserve ratio */
     max-width: 180px;   /* prevent it from growing too large */
     display: block;
 }
 .header .mid_header .search_box input
 {
-    padding: 10px 10px;
+    padding: 10px 12px;
     outline: none;
-    background: none;
-    border-top-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    background: #fff; /* make the search input background white */
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
     width: 250px;
-    border: none;
-    border: 1px solid #8a8a8a
+    border: 1px solid #d0c5b8; /* softer border to match palette */
+    color: #333;
 }
 .header .mid_header .search_box button
 {
@@ -80,22 +80,43 @@
     background: #fed700;
     color: #cd1e76
 }
-.header .mid_header .user 
-{
+.header .mid_header .user,
+.header .mid_header .user-actions {
     display: flex;
-    margin: 30px;
+    align-items: center; /* vertically center login/logout with logo */
 }
-.header .mid_header .user .icon
-{
-    margin-right: 10px;
+
+.user-actions {
+    margin-left: auto; /* push auth to the right */
+    gap: 8px;
 }
-.header .mid_header .user .icon .btn button
-{
+
+.user-actions .auth-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: #fed700;
     border: none;
-    outline: none;
-    font-size: 16px;
-    background: none;
+    border-radius: 4px;
     cursor: pointer;
+    color: #232323;
+    font-weight: 600;
+}
+.user-actions .auth-btn.logout {
+    background: #e74c3c;
+    color: #fff;
+}
+.user-actions .auth-btn:hover {
+    opacity: 0.95;
+}
+
+/* Center the search box horizontally inside the mid header */
+.header .mid_header .search_box {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
 }
 
 /* Make header elements responsive so logo and text keep good proportions */
@@ -108,7 +129,8 @@
         width: 180px;
     }
     .header .mid_header .user,
-    .header .mid_header .btn {
+    .header .mid_header .btn,
+    .header .mid_header .user-actions {
         margin: 8px;
     }
 }
@@ -130,13 +152,41 @@
     .header .mid_header .search_box input {
         width: 100%;
         max-width: none;
+        background: #fff;
     }
     .header .mid_header .user,
-    .header .mid_header .btn{
+    .header .mid_header .btn,
+    .header .mid_header .user-actions {
         margin: 8px 0;
     }
-    .header .mid_header .user2,
-    .header .mid_header .btn2 {
-        margin: 8px 0;
-    }
+}
+.header .last_header
+{
+    width: 100%;
+    padding: 10px 10px;
+    display: flex;
+    background: #232323;
+    justify-content: center; /* center nav links */
+}
+.header .last_header .nav
+{
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+.header .last_header .nav ul
+{
+    display: flex;
+    justify-content: center;
+}
+.header .last_header .nav ul li
+{
+    list-style: none;
+}
+.header .last_header .nav ul li .link
+{
+    margin: 0 20px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
 }

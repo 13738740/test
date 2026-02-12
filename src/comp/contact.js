@@ -8,9 +8,11 @@ const Contact = () => {
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState({ Name: '', email: '', subject: '', Message: '' });
     const [search, setSearch] = useState('');
+    const [error, setError] = useState(null);
 
     const fetchMessages = async () => {
         setLoading(true);
+        setError(null);
         try {
             const res = await fetch(FIREBASE_MESSAGES_URL);
             if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
@@ -25,6 +27,7 @@ const Contact = () => {
             }
         } catch (err) {
             console.error('Error fetching messages', err);
+            setError('Unable to load messages. Please try again later.');
             setDataList([]);
         } finally {
             setLoading(false);
@@ -43,6 +46,12 @@ const Contact = () => {
     const handleSend = async (e) => {
         e.preventDefault();
         const { Name, email, subject, Message } = user;
+        // Basic validation
+        if (!Name.trim() || !email.trim() || !Message.trim()) {
+            setError('Please fill in Name, E-mail and Message before sending.');
+            return;
+        }
+        setError(null);
         try {
             const res = await fetch(FIREBASE_MESSAGES_URL, {
                 method: 'POST',
@@ -55,7 +64,7 @@ const Contact = () => {
             alert('Message Sent');
         } catch (err) {
             console.error(err);
-            alert('Error Occurred: Message send failed');
+            setError('Error occurred sending message. Please try again.');
         }
     };
     return (
@@ -113,29 +122,37 @@ const Contact = () => {
                         onChange={(e) => setSearch(e.target.value)}
                         style={{ padding: '6px 8px', width: '100%', maxWidth: 360 }}
                     />
-                </div>
-                {loading ? (
-                    <p>Loading...</p>
-                ) : (
-                    <ul>
-                        {dataList.length === 0 && <li>No messages</li>}
-                        {/** filter client-side by Name or email (case-insensitive) */}
-                        {dataList
-                            .filter((item) => {
-                                if (!search) return true;
-                                const q = search.toLowerCase();
+                    {loading ? (
+                        <p>Loading...</p>
+                    ) : error ? (
+                        <p style={{ color: 'crimson' }}>{error}</p>
+                    ) : !search.trim() ? (
+                        <p>Type a name or e-mail to search messages.</p>
+                    ) : (
+                        (() => {
+                            const q = search.toLowerCase();
+                            const filtered = dataList.filter((item) => {
                                 const name = (item.Name || '').toLowerCase();
                                 const mail = (item.email || '').toLowerCase();
                                 return name.includes(q) || mail.includes(q);
-                            })
-                            .map((item) => (
-                                <li key={item.id}>
-                                    <strong>{item.Name}</strong> ({item.email}) — <em>{item.subject}</em>
-                                    <div>{item.Message}</div>
-                                </li>
-                            ))}
-                    </ul>
-                )}
+                            });
+                            if (filtered.length === 0) {
+                                return <p>No results found for "{search}"</p>;
+                            }
+                            return (
+                                <ul>
+                                    {filtered.map((item) => (
+                                        <li key={item.id}>
+                                            <strong>{item.Name}</strong> ({item.email}) — <em>{item.subject}</em>
+                                            <div>{item.Message}</div>
+                                        </li>
+                                    ))}
+                                </ul>
+                            );
+                        })()
+                    )}
+                </div>
+
             </div>
     </>
     )

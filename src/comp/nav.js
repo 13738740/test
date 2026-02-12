@@ -6,9 +6,11 @@ import { FiLogIn } from "react-icons/fi";
 import { CiLogout } from "react-icons/ci";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from 'react-router-dom';
+import { useSearch } from '../contexts/SearchContext';
 
 const Nav = () => {
-    const { loginWithRedirect, logout} = useAuth0();
+    const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
+    const { search, setSearch } = useSearch();
     return (
         <>
         <div className='header'>
@@ -25,24 +27,44 @@ const Nav = () => {
                     <img src='image/logo.jpg' alt='logo'></img>
                 </div>
                 <div className= 'search_box'>
-                    <input type='text' value='' placeholder='search'></input>
+                    <input
+                        type='text'
+                        value={search}
+                        placeholder='search'
+                        onChange={(e) => setSearch(e.target.value)}
+                    />
                     <button><AiOutlineSearch /></button>
                 </div>
-                <div className='user'>
-                    <div className='icon'>
-                        <FiLogIn />
-                    </div>
-                    <div className='btn'>
-                        <button onClick={() => loginWithRedirect()}>Login</button>
-                    </div>
-                    <div className='user2'>
-                        <div className='icon'>
-                            <CiLogout />
-                        </div>
-                        <div className='btn2'>
-                            <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>Logout</button>
-                        </div>
-                    </div>
+                <div className='user-actions'>
+                    {!isAuthenticated ? (
+                        <button
+                            className='auth-btn login'
+                            onClick={async () => {
+                                try {
+                                    await loginWithRedirect();
+                                } catch (err) {
+                                    console.error('Auth0 login failed', err);
+                                    alert('Login failed — check the console and Auth0 app settings.');
+                                }
+                            }}
+                        >
+                            <FiLogIn style={{ marginRight: 6 }} /> Login
+                        </button>
+                    ) : (
+                        <button
+                            className='auth-btn logout'
+                            onClick={async () => {
+                                try {
+                                    await logout({ logoutParams: { returnTo: window.location.origin } });
+                                } catch (err) {
+                                    console.error('Auth0 logout failed', err);
+                                    alert('Logout failed — see console.');
+                                }
+                            }}
+                        >
+                            <CiLogout style={{ marginRight: 6 }} /> Logout
+                        </button>
+                    )}
                 </div>
             </div>
             <div className='last_header'>

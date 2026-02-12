@@ -5,44 +5,44 @@
     font-family: sans-serif;
     box-sizing: border-box;
 }
-.contact {
+.home {
     padding: 20px, 40px;
     width: 100%;
 
 }
-.contact .container {
+.home .container {
     padding: 10px 20px;
     max-width: 100%;
 }
-.contact .container .form{
+.home .container .form{
     width: 400px;
     background: #f6f6f6;
     padding: 20px 30px;
     box-shadow: rgba(100,100,111,0.2) 0px 3px 8px;
     margin: 0px auto;
-    border-top: 5px solid #fed700;
+    border-top: 5px solid #82CAFF;
     border-radius: 5px;
 }
-.contact .container .form h2{
-    color: #cd1e7c;
+.home .container .form h2{
+    color: #0000FF;
     text-transform: uppercase;
     font-size: 18px;
     letter-spacing: 1px;
     font-weight: 600
 }
-.contact .container .form .box{
+.home .container .form .box{
     display: flex;
     margin-top: 20px;
     justify-content: space-between;
 }
-.contact .container .form .box .label h4{
+.home .container .form .box .label h4{
     margin-left: 30px;
     color: #232323;
     font-size: 14px;
     font-weight: 600;
     margin-top: 5px;
 }
-.contact .container .form .box .input input{
+.home .container .form .box .input input{
     margin-right: 30px;
     border: none;
     outline: none;
@@ -50,7 +50,7 @@
     border-bottom: 2px solid #8a8a8a;
     padding: 10px 20px
 }
-.contact .container .form .box .input textarea{
+.home .container .form .box .input textarea{
     margin-right: 30px;
     border: none;
     outline: none;
@@ -59,14 +59,13 @@
     padding: 10px 20px;
     resize: none;
 }
-.contact .container .form button{
+.home .container .form button{
     margin-top: 20px;
     margin-left: 30px;
     padding: 10px 30px;
     color: #232323;
     border: none;
     outline: none;
-    background: #fed700;
+    background: #82CAFF;
     cursor: pointer;
 }
-
