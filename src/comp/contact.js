@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import './contact.css'
 
-const FIREBASE_MESSAGES_URL = 'https://react-ecommerce-9acf4-default-rtdb.firebaseio.com/Message.json'
 
+const FIREBASE_MESSAGES_URL = 'https://react-ecommerce-9acf4-default-rtdb.firebaseio.com/Message.json'
 const Contact = () => {
     const [dataList, setDataList] = useState([]);
     const [loading, setLoading] = useState(true);

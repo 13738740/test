@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './nav.css'
 import { MdLocalShipping } from 'react-icons/md'
 import { AiOutlineSearch } from "react-icons/ai";
-import { FiLogIn } from "react-icons/fi";
-import { CiLogout } from "react-icons/ci";
-import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from '../component/LoginButton'
+import LogoutButton from '../component/LogoutButton'
+import Profile from '../component/Profile';
+import { CgProfile } from "react-icons/cg";
 import { Link } from 'react-router-dom';
 import { useSearch } from '../contexts/SearchContext';
 
 const Nav = () => {
-    const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
     const { search, setSearch } = useSearch();
+    const [showProfile, setShowProfile] = useState(false);
     return (
         <>
         <div className='header'>
@@ -36,35 +37,24 @@ const Nav = () => {
                     <button><AiOutlineSearch /></button>
                 </div>
                 <div className='user-actions'>
-                    {!isAuthenticated ? (
+                    {/* Use the shared Login/Logout components (they render conditionally) */}
+                    <LoginButton />
+                    <LogoutButton />
+                    {/* Profile toggle button (shows small popup) */}
+                    <div className="profile-area">
                         <button
-                            className='auth-btn login'
-                            onClick={async () => {
-                                try {
-                                    await loginWithRedirect();
-                                } catch (err) {
-                                    console.error('Auth0 login failed', err);
-                                    alert('Login failed — check the console and Auth0 app settings.');
-                                }
-                            }}
+                            className="profile-btn"
+                            aria-label="Toggle profile"
+                            onClick={() => setShowProfile((s) => !s)}
                         >
-                            <FiLogIn style={{ marginRight: 6 }} /> Login
+                            <CgProfile className="profile-icon" />
                         </button>
-                    ) : (
-                        <button
-                            className='auth-btn logout'
-                            onClick={async () => {
-                                try {
-                                    await logout({ logoutParams: { returnTo: window.location.origin } });
-                                } catch (err) {
-                                    console.error('Auth0 logout failed', err);
-                                    alert('Logout failed — see console.');
-                                }
-                            }}
-                        >
-                            <CiLogout style={{ marginRight: 6 }} /> Logout
-                        </button>
-                    )}
+                        {showProfile && (
+                            <div className="profile-popup">
+                                <Profile />
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
             <div className='last_header'>

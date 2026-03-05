@@ -10,7 +10,7 @@ const FIREBASE_INVENTORY_URL = 'https://inventory-aff70-default-rtdb.firebaseio.
 const Home = () => {
     const [dataList2, setDataList] = useState([]);
         const [loading2, setLoading] = useState(true);
-        const [user2, setUser] = useState({ Book: '', Author: '', ISBN: '', Stock: '' });
+        const [user2, setUser] = useState({ Book: '', Author: '', ISBN: '', Stock: '', Price: '', Cover: '' });
     const { search: search2 } = useSearch();
         const [error2, setError2] = useState(null);
         const fetchMessages2 = async () => {
@@ -48,7 +48,7 @@ const Home = () => {
     
         const handleSend2 = async (e) => {
             e.preventDefault();
-            const { Book, Author, ISBN, Stock } = user2;
+            const { Book, Author, ISBN, Stock, Price, Cover } = user2;
             // basic validation
             if (!Book.trim() || !Author.trim()) {
                 setError2('Please provide at least Book title and Author.');
@@ -59,10 +59,10 @@ const Home = () => {
                 const res2 = await fetch(FIREBASE_INVENTORY_URL , {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ Book, Author, ISBN, Stock })
+                        body: JSON.stringify({ Book, Author, ISBN, Stock: Number(Stock) || 0, Price: Number(Price) || 0, Cover: Cover || '' })
                 });
                 if (!res2.ok) throw new Error(`Send failed: ${res2.status}`);
-                setUser({ Book: '', Author: '', ISBN: '', Stock: '' });
+                setUser({ Book: '', Author: '', ISBN: '', Stock: '', Price: '', Cover: '' });
                 await fetchMessages2();
                 alert('Book added successfully');
             } catch (err) {
@@ -109,14 +109,31 @@ const Home = () => {
                                 <input type='number' placeholder="Stock" value={user2.Stock} name='Stock' onChange={handleChange2}></input>
                             </div>
                         </div>
+                        <div className="box">
+                            <div className="label">
+                                <h4>Price</h4>
+                            </div>
+                            <div className="input">
+                                <input type='number' step='0.01' placeholder="Price" value={user2.Price} name='Price' onChange={handleChange2}></input>
+                            </div>
+                        </div>
+                        <div className="box">
+                            <div className="label">
+                                <h4>Image URL</h4>
+                            </div>
+                            <div className="input">
+                                <input type='text' placeholder="https://...jpg" value={user2.Cover} name='Cover' onChange={handleChange2}></input>
+                            </div>
+                        </div>
                         <button type='submit'>Send</button>
                      </form>
                 </div> 
             </div>
 
         </div>
-        <div className="dispay2">
-                <h1>Data from Firebase:</h1>
+    <div className="dispay2">
+        <h1>Data from Firebase:</h1>
+        <p style={{ margin: '8px 0', fontWeight: 600 }}>Total books: {dataList2.length}</p>
                 <div style={{ marginBottom: 12 }}>
                     {/* Search is controlled from the header search box */}
                     {loading2 ? (
@@ -139,12 +156,18 @@ const Home = () => {
                             }
                             return (
                                 <ul>
-                                    {filtered.map((item2) => (
-                                        <li key={item2.id}>
-                                            <strong>{item2.Book}</strong> ({item2.Author}) — <em>{item2.ISBN}</em>
-                                            <div>{item2.Message}</div>
-                                        </li>
-                                    ))}
+                                        {filtered.map((item2) => (
+                                                <li key={item2.id} className="book-item">
+                                                        {(item2.ImageUrl || item2.Cover || item2.cover) ? (
+                                                            <img src={item2.ImageUrl || item2.Cover || item2.cover} alt={item2.Book} className="book-cover" />
+                                                        ) : null}
+                                                    <div className="book-meta">
+                                                        <strong>{item2.Book}</strong> ({item2.Author}) — <em>{item2.ISBN}</em>
+                                                        {item2.Price ? <div>Price: ${Number(item2.Price).toFixed(2)}</div> : null}
+                                                        <div>{item2.Message}</div>
+                                                    </div>
+                                                </li>
+                                            ))}
                                 </ul>
                             );
                         })()

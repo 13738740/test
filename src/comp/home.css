@@ -69,3 +69,30 @@
     background: #82CAFF;
     cursor: pointer;
 }
+
+/* Book list / cover styles */
+.book-list{
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0 0;
+}
+.book-item{
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+.book-cover{
+    /* Make the cover appear about 1/4 the previous visual size by
+       using 25% of the item width but cap it so it doesn't get too large. */
+    width: 25%;
+    max-width: 120px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+.book-meta{
+    flex: 1 1 auto;
+}
