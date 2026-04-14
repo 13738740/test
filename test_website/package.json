@@ -1,7 +1,7 @@
 {
   "name": "test-website",
   "version": "0.1.0",
-  "homepage": "https://test-q7kc.vercel.app/", 
+  "homepage": "https://test-q7kc-bsni6s4nx-man-tsoi-yees-projects.vercel.app", 
   "private": true,
   "dependencies": {
     "@auth0/auth0-react": "^2.15.0",
