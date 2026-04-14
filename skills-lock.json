@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "skills": {
+    "cometchat": {
+      "source": "cometchat/cometchat-skills",
+      "sourceType": "github",
+      "computedHash": "ea4b5beb5caf4d5bac23e3c1cab64147d6d5c46f3a8f298f5324aa213ac408a6"
+    },
+    "cometchat-react-astro": {
+      "source": "cometchat/cometchat-skills",
+      "sourceType": "github",
+      "computedHash": "e2782c668101b94a6c1d11202d00c7ff6da4b20f9187d845b9adddd3b305c2a4"
+    },
+    "cometchat-react-core": {
+      "source": "cometchat/cometchat-skills",
+      "sourceType": "github",
+      "computedHash": "810544c58b64434b74e8056fc8b2d8acecd3f484e425ee5e5b1d3c150d22e5ca"
+    },
+    "cometchat-react-nextjs": {
+      "source": "cometchat/cometchat-skills",
+      "sourceType": "github",
+      "computedHash": "1ce9f7a6e66ee03005fb2db22c47849b4d0337ba1cecf1f65bee1b2c5dc20592"
+    },
+    "cometchat-react-react-router": {
+      "source": "cometchat/cometchat-skills",
+      "sourceType": "github",
+      "computedHash": "c5549ba418c6130951720c715acab75562f8579a814affc253a1ac823d0d268d"
+    },
+    "cometchat-react-reactjs": {
+      "source": "cometchat/cometchat-skills",
+      "sourceType": "github",
+      "computedHash": "2a7f505fe3ce98e0212a8d16bb2dfec8c3dcaa737bc6acd30295182397175798"
+    }
+  }
+}
