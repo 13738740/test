@@ -1,0 +1,62 @@
+/* The Grid Container */
+.collection-page h2{
+    color: #704214;
+}
+.collection-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    padding: 20px;
+    align-items: start; /* Keeps rows level at the top */
+}
+
+/* The Beige Box for each book */
+.collection-card {
+    background-color: #F5F1E9; /* Soft Beige color */
+    border: 1px solid #D6BEA8; /* Border matching your top header */
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Image Box Area */
+.collection-card .image-box {
+    background-color: #FFF; /* White background inside the beige box for the cover */
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    min-height: 200px; /* Ensures the box exists even if image is missing */
+}
+
+.collection-card img {
+    width: 100%;
+    height: fit-content; /* As requested */
+    max-height: 300px; /* Prevents extremely long images from breaking the row */
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+/* Text Styling */
+.collection-card h3 {
+    color: #2F2E2D;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.collection-card .author {
+    color: #6E655C;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.collection-card .price {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #AD6B4B;
+    font-size: 1.2rem;
+}

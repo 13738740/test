@@ -1,0 +1,201 @@
+*{
+    margin:0;
+    padding:0;
+    font-family: sans-serif; 
+    box-sizing: border-box;
+    background: none;
+}
+.header{
+    width: 100%;
+    background-color: #EEE3CE;
+}
+.header .top_header{
+    max-width: 100%;
+    display: flex;
+    padding: 10px 10px;
+    background: #f5f5dc;
+}
+.header .top_header .icon{
+    background: none;
+    margin-left: 20px;
+    color:#7b3f00;
+    font-size: 25px;
+    margin-right: 10px;
+}
+.header .top_header .info p{
+    position: relative;
+    background: none;
+    margin-left: 10px;
+    color: #7b3f00;
+    font-size: 25px;
+    width: 1000px;
+    font-style: bold;
+}
+.header .mid_header{
+    display: flex;
+    padding: 20px 40px;
+    max-width: 100%;
+    justify-content: space-between;
+    height: fit-content;
+}
+.header .mid_header .logo img{
+    object-fit: cover;
+    width: 150px;
+    height: fit-content;
+    cursor: pointer;
+}
+.header .mid_header .search_box input{
+    margin-top: 40px;
+    padding: 15px 10px;
+    outline: none;
+    background: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width: 250px;
+    border: none;
+    background: #F9F7F3;    
+}
+.header .mid_header .search_box button{
+    position: relative;
+    padding: 15px 10px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;    
+    border: none;
+    outline: none;
+    width: 50px;
+    background: none;
+    background-color: #AD6B4B;
+    cursor: pointer;
+    margin: right 30px;
+    transition: 0.5s;
+    font-weight: 600;
+}
+.header .mid_header .search_box button:hover{
+    background-color: #C2AB7E;
+    background: transparent;
+    color: #6E655C;
+}
+/* Container for all actions */
+.header .mid_header .user-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Adds consistent spacing between buttons */
+    margin-right: 30px;
+}
+
+/* Base style for Login/Logout Buttons (Assuming they render as buttons) */
+.header .mid_header .user-actions button {
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #800517;
+}
+
+/* Specific styling for the Profile Area */
+.header .mid_header .user-actions .profile-area {
+    position: relative; /* Necessary for the popup to align correctly */
+}
+
+.header .mid_header .user-actions .profile-btn {
+    top:50%;
+    background: none;
+    border: none;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #F9F7F3;
+    background-color: #354A21;
+    transition: color 0.3s;
+}
+
+/* Making the Profile Icon larger */
+.header .mid_header .user-actions .profile-icon {
+    font-size: 35px; /* Adjust this to make the icon bigger */
+}
+
+.header .mid_header .user-actions .profile-btn:hover .profile-icon {
+    color: #cd1e76; /* Matches your pink/magenta hover theme */
+}
+
+/* The Popup Menu (The box that appears when clicking profile) */
+.header .mid_header .user-actions .profile-popup {
+    position: absolute;
+    top: 110%; /* Sits right below the icon */
+    right: 0;
+    background-color: white;
+    min-width: 200px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    z-index: 1000;
+    border: 1px solid #eee;
+    animation: fadeIn 0.2s ease-out;
+}
+
+/* Animation for the popup */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Adjusting Login/Logout buttons if they are separate components */
+.header .mid_header .user-actions .login-btn {
+    background-color: #4E6172;
+    color: white;
+}
+
+.header .mid_header .user-actions .logout-btn {
+    background-color: #8F3B1B; 
+    color: white;
+}
+.header .last_header{
+    width: 100%;
+    padding: 10px 10px;
+    display: flex;
+    background: #f5f5dc;
+    justify-content: center;
+}
+.header .last_header .nav{
+    margin-top: 15px;
+    background: none;
+}
+.header .last_header .nav ul{
+    display: flex;
+    background: none;
+}
+.header .last_header .nav ul li{
+    justify-content: center;
+    list-style: none;
+    margin-right: 80px;
+    background: none;
+    font-size: 25px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.header .last_header .nav ul li .link{
+    margin-right: 20px;
+    text-decoration: none;
+    background: none;
+    color: #483c32;
+    font-weight: 600;
+    transition: 0.5s;
+}
+.header .last_header .nav ul li .link:hover{
+    color: #847262;
+}
+/* This applies the Top Header color to the entire page background */
+body {
+    background-color: #EEE3CE; 
+    min-height: 100vh;
+}
+
+/* OR, if you only want it directly under the header but not the whole page */
+.shop-page-layout, .main-content, .admin-container , .collection-page, .about-page, .home {
+    background-color: #EEE3CE;
+}

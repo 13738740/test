@@ -1,0 +1,149 @@
+.shop-page-layout {
+    display: flex;
+    background-color: #d8caaf; /* Matches your body background */
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 3; /* Takes up 75% of the width */
+    padding: 20px;
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 60px;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    color: #4b3621;
+    font-size: 28px;
+}
+.shop .display2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.shop .display2 .item2 {
+    justify-content: center;
+    width: 300px;
+    height: fit-content;
+    background: #f6f7f8;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    font-size: 20px;
+}
+.shop .display2 .item2 .book-info {
+    margin-bottom: 10px;
+    color: #4b3621;
+}
+.shop .display2 .item2 .link, 
+.item2 .book-info .link {
+    background-color: #b87333; /* Your copper/bronze color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.view-all-btn {
+    background-color: #c3b091; /* Olive green from your profile btn */
+    color: #483c32;
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Sidebar Styling */
+.cart-sidebar {
+    flex: 1; /* Takes up 25% of the width */
+    background-color: #F5F1E9; /* Beige card color */
+    border-left: 2px solid #D6BEA8;
+    padding: 30px 20px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-sidebar h3 {
+    color: #4b3621;
+    border-bottom: 2px solid #D6BEA8;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.sidebar-cart-item .item-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Keeps text and button level */
+    width: 100%;
+}
+
+.cart-text {
+    display: flex;
+    flex-direction: column; /* Stacks name and price linearly */
+    flex-grow: 1;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 5px;
+    margin-left: 10px;
+    transition: color 0.2s;
+    line-height: 1;
+}
+
+.remove-btn:hover {
+    color: #8F3B1B; /* Matches your dark rust/red theme on hover */
+}
+
+.cart-footer {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 2px solid #D6BEA8;
+}
+
+.total {
+    font-size: 20px;
+    font-weight: bold;
+    color: #4b3621;
+    margin-bottom: 15px;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #AD6B4B; /* Brown button color */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.checkout-btn:hover {
+    background-color: #8F3B1B;
+}
+
+.status-banner {
+    background-color: #82896E;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    margin: 0 60px 20px 60px;
+}
